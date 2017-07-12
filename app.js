@@ -1,7 +1,10 @@
 var express = require('express');
 var bodyParser = require("body-parser");
 var app = express();
-
+/**
+ * Once done the tutorial look into adding features for receiving pictures from my imgur
+ * AS well as uplading them to imgur (find a way to determine that it is yeri)
+ */
 app.use(bodyParser.urlencoded({extended:true}));
 app.set("view engine", "ejs");
 
