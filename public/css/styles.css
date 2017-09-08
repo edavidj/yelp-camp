@@ -5,3 +5,12 @@
 #new-title{
   text-align: center;
 }
+.thumbnail{
+  padding: 0 !important;
+}
+.thumbnail img{
+  width:100% !important;
+}
+.caption-full{
+  padding: 9px !important;
+}
