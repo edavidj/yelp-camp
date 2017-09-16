@@ -3,11 +3,13 @@ var express     = require('express'),
     path        = require("path"),
     mongoose    = require("mongoose"),
     passport    = require("passport"),
+    methodOverride = require("method-override"),
     localStrategy = require("passport-local"),
     Campground  = require("./models/Campground"),
     Comment     = require("./models/Comment"),
     seedDB      = require("./seeds"),
-    User        = require("./models/User"),    
+    User        = require("./models/User"), 
+    flash       = require("connect-flash"), 
     app         = express();
 
 var commentRoutes = require("./routes/comments"),
@@ -18,6 +20,8 @@ var commentRoutes = require("./routes/comments"),
 mongoose.connect("mongodb://onetrueyeri:password@localhost:27012/yelp_camp?authSource=admin", {useMongoClient: true}); //do more research into doing this a better way
 app.use(express.static(path.join(__dirname,'public')));
 app.use(bodyParser.urlencoded({extended:true}));
+app.use(methodOverride("_method"));
+app.use(flash());
 app.set("view engine", "ejs");
 // seedDB(); //seed the db
 //passport authentication init
@@ -34,6 +38,8 @@ passport.deserializeUser(User.deserializeUser());
 //pass user for header statements on each route
 app.use(function(req,res,next){
     res.locals.user = req.user;
+    res.locals.error = req.flash("error");
+    res.locals.success = req.flash("success");
     next(); //important if this isn't there it will stop
 });
 //init route files
