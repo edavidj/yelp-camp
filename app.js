@@ -17,7 +17,9 @@ var commentRoutes = require("./routes/comments"),
     indexRoutes = require("./routes/index");
 // mongoose.Promise = global.Promise;
 //============= INIT
-mongoose.connect("mongodb://onetrueyeri:password@localhost:27012/yelp_camp?authSource=admin", {useMongoClient: true}); //do more research into doing this a better way
+// mongoose.connect("mongodb://onetrueyeri:password@localhost:27012/yelp_camp?authSource=admin", {useMongoClient: true}); //local db
+mongoose.connect("mongodb://onetrueyeri:Ovechkin9#@ds139884.mlab.com:39884/yericamp"); //live db
+//mongodb://onetrueyeri:Ovechkin9#@ds139884.mlab.com:39884/yericamp
 app.use(express.static(path.join(__dirname,'public')));
 app.use(bodyParser.urlencoded({extended:true}));
 app.use(methodOverride("_method"));
