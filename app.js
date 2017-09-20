@@ -48,7 +48,8 @@ app.use(function(req,res,next){
 app.use(indexRoutes);
 app.use("/campgrounds/:id/comments",commentRoutes);
 app.use("/campgrounds", campgroundRoutes);
+var port = process.env.PORT || 3000;
 //listen for connection
-app.listen(3000, function(){
+app.listen(port, function(){
     console.log("The Yelp Camp server has started.");
 });
